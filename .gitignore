@@ -1,0 +1,4 @@
+.env
+venv
+db.sqlitle3
+my_app/migrations/*

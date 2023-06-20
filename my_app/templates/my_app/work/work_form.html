@@ -1,0 +1,40 @@
+{% extends 'my_app/index.html' %}
+{% load static %}
+{% block logo %}
+<div class="form-container">
+    <h2><b>Crie sua vaga</b></h2><br>
+    <form method="POST">
+        {% csrf_token %}
+        <h5>Nome</h5>
+        {{ form.name }}<br><br>
+
+        <h5>Profissão</h5>
+        {{ form.profession }}
+        <p hidden>{{ form.type_job }}</p><br><br>
+
+        <h5>Salário por hora</h5>
+        {{ form.salary }}<br><br>
+        <b>{{ form.salary.errors }}</b>
+
+        {# Comment at first moment to let the form as simple as possible#}
+        {# <h5>Línguas</h5>#}
+        {# {{ form.language_french }}Frances<br>#}
+        {# {{ form.language_english }}Inglês<br>#}
+        {# {{ form.language_dutch }}Neerlandes<br><br>#}
+        {##}
+        {# <h5>Permissão para dirigir</h5>#}
+        {# {{ form.drivers_license }}<br><br>#}
+
+        <h5>Contato</h5>
+        {{ form.contact }}<br><br>
+        <b>{{ form.contact.errors }}</b>
+
+
+        <h5>Informação adicional</h5>
+        {{ form.description }}<br><br>
+
+        <button type="submit" name="submit" class="crie_vaga">Criar Vaga</button>
+    </form>
+    <br><br><br>
+</div>
+{% endblock %}

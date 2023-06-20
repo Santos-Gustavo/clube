@@ -1,0 +1,32 @@
+{% extends 'my_app/index.html' %}
+{% load static %}
+{% block logo %}
+<div class="form-container">
+    <h2><b>Crie tua publicação</b></h2><br>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h5>Titulo</h5>
+        {{ form.title }}<br><br>
+
+        <h5>Tipo de Serviço</h5>
+        {{ form.service_type }}<br><br>
+
+        <h5>Preço</h5>
+        {{ form.price }}<br><br>
+
+        <h5>Endereço</h5>
+        {{ form.address }}<br><br>
+
+        <h5>Contato</h5>
+        {{ form.contact }}<br><br>
+        <b>{{ form.contact.errors }}</b>
+
+        <h5>Descrição</h5>
+        {{ form.description }}<br><br>
+        {{ form.image }}<br><br>
+
+        <button type="submit" name="submit" class="crie_vaga">Criar publicação</button>
+    </form>
+    <br><br><br>
+</div>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'my_app/index.html' %}
+{% load static %}
+
+{% block logo %}
+    <body>
+    <h1>Serviços</h1>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <div class="menu_elmt">
+                <a href="{% url 'my_app:service-domestic-page' %}">
+                    <div class="work-table-row">Doméstico</div>
+                </a>
+            </div>
+            <br>
+            <div class="menu_elmt">
+                <a href="{% url 'my_app:service-healthy-beauty-page' %}">
+                    <div class="work-table-row">Saúde e Beleza</div>
+                </a>
+            </div>
+            <br>
+            <div class="menu_elmt">
+                <a href="{% url 'my_app:service-technic-page' %}">
+                    <div class="work-table-row">Técnico</div>
+                </a>
+            </div>
+        </div>
+        <div hidden class="col">
+            <div class="menu_elmt">
+                <a href="{% url 'my_app:service-class-page' %}">
+                    <div class="work-table-row">Aula</div>
+                </a>
+            </div>
+            <br>
+            <div hidden class="menu_elmt">
+                <a href="{% url 'my_app:service-travel-page' %}">
+                    <div class="work-table-row">Viagem</div>
+                </a>
+            </div>
+            <br>
+
+        </div>
+        <div class="col">
+            <div class="menu_elmt">
+                <th>
+                    <a href="{% url 'my_app:service-food-page' %}">
+                        <div class="work-table-row">Comida</div>
+                    </a>
+                </th>
+            </div>
+            <br>
+            <div class="menu_elmt">
+                <a href="{% url 'my_app:service-transport-page' %}">
+                    <div class="work-table-row">Transporte</div>
+                </a>
+            </div>
+            <br>
+            <div class="menu_elmt">
+                <a href="{% url 'my_app:service-other-page' %}">
+                    <div class="work-table-row">Outros</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+
+    <div class="service_tile row">
+        <div class="square col-lg-6">
+            {% if service.image %}
+                <img src="{{ service.image.url }}" class="service_image rounded">
+            {% else %}
+                <img src="{% static 'images/No_Image_Available.jpg' %}" class="service_image rounded">
+            {% endif %}
+        </div>
+        <div class="col">
+            <b> {{ service.title }} </b><br>
+            €{{ service.price|floatformat:2 }}<br>
+            {{ service.contact }}<br>
+            {{ service.address }}
+            <div class="service_description">
+                {{ service.description }}
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+    </body>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'my_app/work/work.html' %}
+{% load static %}
+
+{% block work %}
+<hr>
+<button class="top_btn">
+    <h2>
+        <a href="{% url 'my_app:work-other-form-page' %}">
+            <div>Crie uma vaga</div>
+        </a>
+    </h2>
+</button>
+<hr>
+{% endblock %}
