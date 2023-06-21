@@ -33,6 +33,7 @@ ALLOWED_HOSTS = [".clubeimigrante.com", "clubeimigrante.com", "127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [
+    "my_app"
     "my_app.apps.my_appConfig",
     "django.contrib.admin",
     "django.contrib.auth",
