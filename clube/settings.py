@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = [".clubeimigrante.com", "clubeimigrante.com", "*"]
+ALLOWED_HOSTS = [".clubeimigrante.com", "clubeimigrante.com"]
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "csp.middleware.CSPMiddleware"
 ]
 
 ROOT_URLCONF = "clube.urls"
@@ -106,6 +108,8 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
+USE_L10N = True  # ToDo: Change timezone DATE_INPUT_FORMATS = ['%Y-%m-%d']
+
 USE_TZ = True
 
 
@@ -116,7 +120,25 @@ STATIC_URL = "static/"
 STATIC_ROOT = config('STATIC_ROOT')
 STATICFILES_DIRS = [BASE_DIR / "my_app/static"]
 
+# Base url to serve media files
+MEDIA_URL = '/media/'
+
+# Path where media is stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = '/'
+
+SECURE_HSTS_SECONDS = 2_592_000  # 30 days
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
+CSP_STYLE_SRC = ["'self'", "cdn.jsdelivr.net"]
