@@ -142,3 +142,5 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 CSP_STYLE_SRC = ["'self'", "cdn.jsdelivr.net"]
+
+LOGIN_URL = 'login'
