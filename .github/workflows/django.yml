@@ -27,7 +27,6 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        - name: Analysing the code with pylint # SECRET_KEY is generated with DJANGO SECRET KEY GENERATOR
         export SECRET_KEY="0-42!#@*6jqo)lv^+@-+&(-@kjke@xzk%)1!w)vz-1uwk71p)="
         export DB_USER=${{ secrets.DB_USER }}
         export DB_PASSWORD=${{ secrets.DB_PASSWORD }}
