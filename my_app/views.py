@@ -82,11 +82,12 @@ class WorkOtherView(WorkViewBase):
 
 
 class WorkFormTemplate(LoginRequiredMixin, CreateView):
+    success_url = reverse_lazy('my_app:success-page')
+    template_name = 'my_app/work/work_form.html'
+    model = WorkModel
     def __init__(self, form_class):
-        self.model = WorkModel
         self.form_class = form_class
-        self.success_url = reverse_lazy('my_app:success-page')
-        self.template_name = 'my_app/work/work_form.html'
+        
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -117,9 +118,19 @@ class WorkUpdateView(LoginRequiredMixin, UpdateView):
 
 class WorkDeleteView(LoginRequiredMixin, DeleteView):
     model = WorkModel
-    form_class = WorkOtherForm
     success_url = reverse_lazy('my_app:work-page')
     template_name = 'my_app/delete_post.html'
+
+    def get_queryset(self):
+        # Restrict the queryset to only include objects belonging to the logged-in user
+        queryset = super().get_queryset()
+        return queryset.filter(author=self.request.user)
+
+    def delete(self, request, *args, **kwargs):
+        # Override the delete method to set the author_id field to the logged-in user's ID
+        self.object = self.get_object()
+        self.object.author_id = request.user.id
+        return super().delete(request, *args, **kwargs)
 ####################################################################################################
 
 
@@ -212,7 +223,17 @@ class ServiceUpdateView(LoginRequiredMixin, UpdateView):
 
 class ServiceDeleteView(LoginRequiredMixin, DeleteView):
     model = ServiceModel
-    form_class = ServiceForm
     success_url = reverse_lazy('my_app:service-page')
     template_name = 'my_app/delete_post.html'
+
+    def get_queryset(self):
+        # Restrict the queryset to only include objects belonging to the logged-in user
+        queryset = super().get_queryset()
+        return queryset.filter(author=self.request.user)
+
+    def delete(self, request, *args, **kwargs):
+        # Override the delete method to set the author_id field to the logged-in user's ID
+        self.object = self.get_object()
+        self.object.author_id = request.user.id
+        return super().delete(request, *args, **kwargs)
 ####################################################################################################
