@@ -20,13 +20,14 @@ class WorkConstructionForm(ModelForm):
             ('Charpentier/Carpinteiro', 'Charpentier/Carpinteiro'),
             ('Coffreur/Cofragem', 'Coffreur/Cofragem'),
             ('Couvreur/Carpinteiro(telhado)', 'Couvreur/Carpinteiro(telhado)'),
-            ('Ferrailleur/Armador de Ferro', 'Ferrailleur/Armador de Ferro'),
             ('Chauffage/Aquecimento', 'Chauffage/Aquecimento'),
+            ('Ferrailleur/Armador de Ferro', 'Ferrailleur/Armador de Ferro'),
+            ('Gyproc/Gesseiro', 'Gyproc/Gesseiro'),
+            ('Masticage', 'Masticage'),
             ('Maçon/Pedreiro', 'Maçon/Pedreiro'),
             ('Plombier/Encanador', 'Plombier/Encanador'),
             ('Peintre/Pintor', 'Peintre/Pintor'),
             ('Plafonneur', 'Plafonneur'),
-            ('Masticage', 'Masticage'),
             ('Ajudante', 'Ajudante')
         )
         LANGUAGE_CHOICES = languages
